@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <!--LINK DE CSS DE ESTE ARCHIVP-->
+    <link rel="stylesheet" type="text/css" href="/css/ejemplo.css">
+    <script src="/socket.io/socket.io.js"></script>
+    
+</head>
+<body>
+
+    <div class="jumbotron bg-info">
+        <h1 id="h1animales" class="display-4"></h1>     
+    </div>
+
+    <div class="botonIniciar">
+        <button id="btnIniciar" class="btn btn-primary" onClick="iniciarTest();">Comenzar a aprender</button>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <img id="imgQuestion" src="" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div id="grid1" class="col-sm-12">
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Respuestas Correctas: <span class="rigthCounter">0</span></p>
+                <p>Respuestas Incorrectas: <span class="wrongCounter">0</span></p>
+            </div>
+        </div>
+        <button id="btnNext" class="btn btn-primary btn-block" onclick="printHTMLQuestion(currentQuestionIndex)">Siguiente</button>
+    </div>
+    <!--DIV PARA MOSTRAR LOS RESULTADOS FINALES-->
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <h2>RESULTADOS</h2>    
+        <h3>Intentos</h3>
+        <p id="parrafoIntentos"></p>
+        <h3>Correctas</h3>
+        <p id="parrafoCorrectas"></p>
+        <h3>Incorrectas</h3>
+        <p id="parrafoIncorrectas"></p>
+    </div>
+
+    <script src="/js/ejemplo.js"></script>
+</body>
+</html>
