@@ -1,7 +1,9 @@
 const express = require('express');
 var app = express();
 var http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+    origins: '*:*'
+});
 
 const five = require('johnny-five');
 const path = require('path');
@@ -9,7 +11,7 @@ const router = express.Router();
 
 const port = process.env.PORT || 3000;
 
-console.log(port);
+console.log(port);  
 
 var board = new five.Board();
 var boton1, boton2;
