@@ -1,12 +1,7 @@
 const express = require('express');
 var app = express();
 var http = require('http').Server(app);
-const io = require('socket.io')(http, {
-    cors: {
-        origin: `http://localhost:${port}`,
-        methods: ["GET"]
-    }
-});
+const io = require('socket.io')(http);
 
 const five = require('johnny-five');
 const path = require('path');
