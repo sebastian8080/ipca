@@ -1,20 +1,18 @@
 const express = require('express');
 var app = express();
 var http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET"]
+    }
+});
 
 const five = require('johnny-five');
 const path = require('path');
 const router = express.Router();
 
 const port = process.env.PORT || 3000;
-
-var cors = require('cors');
-
-var corsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200
-}
 
 var board = new five.Board();
 var boton1, boton2;
@@ -57,7 +55,7 @@ board.on('ready', function(){
 
 });
 
-router.get('/', cors(corsOptions), (req, res) => {
+router.get('/', (req, res) => {
     res.render('index');
 });
 
