@@ -9,6 +9,8 @@ const router = express.Router();
 
 const port = process.env.PORT || 3000;
 
+console.log(port);
+
 var board = new five.Board();
 var boton1, boton2;
 var placaCargada = false;
