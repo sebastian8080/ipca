@@ -7,6 +7,8 @@ const five = require('johnny-five');
 const path = require('path');
 const router = express.Router();
 
+const port = process.env.PORT || 3000;
+
 var board = new five.Board();
 var boton1, boton2;
 var placaCargada = false;
@@ -54,7 +56,7 @@ router.get('/', (req, res) => {
 
 app.use(router);
 
-http.listen(3000, function(){
+http.listen(port, function(){
     console.log('Server listening on port 3000!');
 });
 
