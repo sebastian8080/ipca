@@ -12,8 +12,8 @@ var boton1, boton2;
 var placaCargada = false;
 
 app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname + '/views'));
+app.set('view engine', 'html');
+app.set('views', path.join(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 
 comprobarPlaca(placaCargada);
@@ -49,7 +49,7 @@ board.on('ready', function(){
 });
 
 router.get('/', (req, res) => {
-    res.render('ejemplo');
+    res.render('index');
 });
 
 app.use(router);
