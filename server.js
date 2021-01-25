@@ -2,16 +2,18 @@ const express = require('express');
 var app = express();
 var http = require('http').Server(app);
 const io = require('socket.io')(http, {
-    origins: '*:*'
+    origins: allowedOrigins,
+    path: path
 });
 
 const five = require('johnny-five');
 const path = require('path');
 const router = express.Router();
 
-const port = process.env.PORT || 3000;
+var allowedOrigins = 'http://localhost:* http://127.0.0.1:*';
+var path = '/stomp';
 
-console.log(port);  
+const port = process.env.PORT || 3000;
 
 var board = new five.Board();
 var boton1, boton2;
