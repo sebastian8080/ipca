@@ -9,6 +9,13 @@ const router = express.Router();
 
 const port = process.env.PORT || 3000;
 
+var cors = require('cors');
+
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+}
+
 var board = new five.Board();
 var boton1, boton2;
 var placaCargada = false;
@@ -50,7 +57,7 @@ board.on('ready', function(){
 
 });
 
-router.get('/', (req, res) => {
+router.get('/', cors(corsOptions), (req, res) => {
     res.render('index');
 });
 
