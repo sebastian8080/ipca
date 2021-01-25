@@ -64,7 +64,10 @@ const cuestionary = [
 
 document.querySelector('#h1animales').innerHTML = titulo;
 
-const socket = io('http://localhost:3000');
+const socket = io('http://localhost:3000', {
+    origins: '*:*'
+});
+
 socket.on('data', function(data){
     if(data != null){
         if(data == 1){
