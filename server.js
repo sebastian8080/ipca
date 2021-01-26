@@ -1,7 +1,11 @@
 const express = require('express');
 var app = express();
-var http = require('http').Server(app);
-const io = require('socket.io')(http);
+var http = require('http').createServer(app);
+var allowedOrigins = "http://localhost:* http://127.0.0.1:*";
+const io = require('socket.io')(http, {
+    origins: allowedOrigins,
+    
+});
 
 const five = require('johnny-five');
 const path = require('path');
