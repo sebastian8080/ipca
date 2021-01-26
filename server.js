@@ -1,10 +1,9 @@
 const express = require('express');
 var app = express();
 var http = require('http').createServer(app);
-var allowedOrigins = "http://localhost:* http://127.0.0.1:*";
 const io = require('socket.io')(http, {
-    origins: allowedOrigins,
-    
+    log: false,
+    origins: '*:*',
 });
 
 const five = require('johnny-five');
@@ -55,6 +54,10 @@ board.on('ready', function(){
 });
 
 router.get('/', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    res.header("Access-Control-Allow-Methods", "GET");
     res.render('index');
 });
 
