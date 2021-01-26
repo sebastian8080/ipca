@@ -7,7 +7,7 @@ const five = require('johnny-five');
 const path = require('path');
 const router = express.Router();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 var board = new five.Board();
 var boton1, boton2;
