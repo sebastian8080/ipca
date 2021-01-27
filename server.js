@@ -1,14 +1,13 @@
 const express = require('express');
 var app = express();
-var cors = require('cors');
 var http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
+      }
+});
 
-
-var corsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200
-}
 const five = require('johnny-five');
 const path = require('path');
 const router = express.Router();
@@ -56,7 +55,7 @@ board.on('ready', function(){
 
 });
 
-router.get('/', cors(corsOptions), (req, res) => {
+router.get('/', (req, res) => {
     res.render('index');
 });
 
