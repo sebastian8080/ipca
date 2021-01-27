@@ -1,7 +1,13 @@
 const express = require('express');
 var app = express();
 var http = require('http').createServer(app);
-const io = require('socket.io')(http);
+app.use(require('cors')());
+const io = require('socket.io')(http, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ['GET', 'POST']
+    }
+});
 
 const five = require('johnny-five');
 const path = require('path');
@@ -17,13 +23,6 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
-
-app.use(function(req, res, next){
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
 
 comprobarPlaca(placaCargada);
 
@@ -58,10 +57,6 @@ board.on('ready', function(){
 });
 
 router.get('/', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header("Access-Control-Allow-Headers", "Content-Type");
-    res.header("Access-Control-Allow-Methods", "GET");
     res.render('index');
 });
 
