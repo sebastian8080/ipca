@@ -1,10 +1,7 @@
 const express = require('express');
 var app = express();
 var http = require('http').createServer(app);
-const io = require('socket.io')(http, {
-    log: false,
-    origins: '*:*',
-});
+const io = require('socket.io')(http);
 
 const five = require('johnny-five');
 const path = require('path');
