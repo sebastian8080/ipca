@@ -64,9 +64,9 @@ const cuestionary = [
 
 document.querySelector('#h1animales').innerHTML = titulo;
 
-const socket = io.connect('https://servidor-ipca.herokuapp.com/');
+const socket = io.connect('http://localhost:3001');
 
-socket.on('data', function(data){
+socket.on('arduino:data', function(data){
     if(data != null){
         if(data == 1){
             respuesta = document.getElementById("img2").getAttribute("src"); 
@@ -75,6 +75,8 @@ socket.on('data', function(data){
         }
         objeto = document.getElementById('grid1');
         evaluateAnswer(respuesta, objeto);
+    } else {
+        console.log('Error al presionar la placa');
     }
 });
 
